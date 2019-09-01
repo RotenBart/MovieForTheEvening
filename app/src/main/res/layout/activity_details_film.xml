@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" android:orientation="vertical"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+<ImageView
+    android:id="@+id/filmImage"
+    android:layout_width="300dp"
+    android:layout_height="300dp"
+    android:layout_gravity="center"/>
+    <TextView
+        android:id="@+id/filmTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Название фильма"/>
+    <TextView
+        android:id="@+id/filmYear"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Год фильма"/>
+    <TextView
+        android:id="@+id/filmRate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Рейтинг фильма"/>
+    <TextView
+        android:id="@+id/filmDesc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Описание фильма"/>
+    <Button
+        android:id="@+id/webViewButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Кнопка для перехода на webview с фильмом"/>
+    <Button
+        android:id="@+id/addToListButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Добавить в список просмотра"/>
+    <Button
+        android:id="@+id/backButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Вернуться к списку"/>
+</LinearLayout>
