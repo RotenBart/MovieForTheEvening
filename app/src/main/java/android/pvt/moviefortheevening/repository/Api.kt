@@ -13,8 +13,8 @@ interface Api {
         @Query("language") language:String,
         @Query("page") page:String,
         @Query("with_genres") idGenre:String,
-        @Query("vote_average.gte") rate:String,
-        @Query("primary_release_year.gte") gteYear:String,
-        @Query("primary_release_year.lte") lteYear:String
+        @Query("vote_average.gte") rate:Float,
+        @Query("primary_release_date.gte") gteYear:String,
+        @Query("primary_release_date.lte") lteYear:String
     ):Single<Films>
 }

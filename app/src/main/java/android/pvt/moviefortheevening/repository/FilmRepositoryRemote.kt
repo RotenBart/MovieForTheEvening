@@ -9,9 +9,9 @@ class FilmRepositoryRemote(private val api: Api): FilmRepository {
         language: String,
         page: String,
         idGenre: String,
-        rate: String,
-        lteYear: String,
-        gteYear: String
+        rate: Float,
+        gteYear: String,
+        lteYear: String
     ) :Single<Films>{
        return api.getFilms(apiKey,language,page,idGenre,rate,gteYear,lteYear)
     }

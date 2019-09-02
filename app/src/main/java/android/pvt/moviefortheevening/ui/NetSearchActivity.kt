@@ -20,21 +20,22 @@ class NetSearchActivity : FragmentActivity(), SeekBar.OnSeekBarChangeListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_search_net)
-        randomButton.setOnClickListener {
-            setCheckBox()
-            setSeekBarData()
-            Log.e("QQQ", filmParams.toString())
-            Log.e("QQQ", genreArray.toString())
-            val intent = Intent(this, FilmDetailsActivity::class.java)
-            intent.putExtra("ID", genreArray)
-            startActivity(intent)
-        }
         rateSeekBar.setOnSeekBarChangeListener(this)
         startYearSeekBar.setOnSeekBarChangeListener(this)
         endYearSeekBar.setOnSeekBarChangeListener(this)
         textRateSeekBar.text = filmParams.rate
         textStartYearSeekBar.text = filmParams.startYear
         textEndYearSeekBar.text = filmParams.endYear
+        Log.e("QQQ", filmParams.toString())
+        randomButton.setOnClickListener {
+            getCheckBoxData()
+            getSeekBarData()
+            Log.e("QQQ", filmParams.genres.toString())
+
+            val intent = Intent(this, FilmDetailsActivity::class.java)
+            intent.putExtra("PARAMS", filmParams)
+            startActivity(intent)
+        }
         Log.e("QQQ", filmParams.toString())
 
     }
@@ -47,10 +48,13 @@ class NetSearchActivity : FragmentActivity(), SeekBar.OnSeekBarChangeListener {
     }
 
     override fun onStopTrackingTouch(seekBar: SeekBar?) {
-
+        if(startYearSeekBar.progress>=endYearSeekBar.progress){
+            endYearSeekBar.progress = startYearSeekBar.progress
+        }
     }
 
-    fun setCheckBox(){
+    fun getCheckBoxData(){
+        var unchecked = true
         if (comedyCheckbox.isChecked) {
             genreArray.add(genres.genres["Comedy"].toString())
         }
@@ -69,13 +73,17 @@ class NetSearchActivity : FragmentActivity(), SeekBar.OnSeekBarChangeListener {
         if (animationCheckbox.isChecked) {
             genreArray.add(genres.genres["Animation"].toString())
         }
+        if (!comedyCheckbox.isChecked&&!actionCheckbox.isChecked&&!dramaCheckbox.isChecked&&!fantasyCheckbox.isChecked&&!horrorCheckbox.isChecked&&!animationCheckbox.isChecked){
+            genreArray.add("")
+        }
+        filmParams.genres = genreArray
     }
     fun updateSeekBarText(){
         textRateSeekBar.text = rateSeekBar.progress.toString()
         textStartYearSeekBar.text = startYearSeekBar.progress.toString()
         textEndYearSeekBar.text = endYearSeekBar.progress.toString()
     }
-    fun setSeekBarData(){
+    fun getSeekBarData(){
         filmParams.rate = rateSeekBar.progress.toString()
         filmParams.startYear = startYearSeekBar.progress.toString()
         filmParams.endYear = endYearSeekBar.progress.toString()

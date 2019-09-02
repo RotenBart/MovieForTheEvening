@@ -1,6 +1,7 @@
 package android.pvt.moviefortheevening.mvvm
 
 import android.pvt.moviefortheevening.API_KEY
+import android.pvt.moviefortheevening.entity.FilmParams
 import android.pvt.moviefortheevening.entity.Films
 import android.pvt.moviefortheevening.repository.provideFilmRepository
 import android.util.Log
@@ -19,8 +20,12 @@ class ViewModelFilms:ViewModel() {
         MutableLiveData<MVVMState>()
     }
 
-    fun load() {
-        disposable = repository.getFilms(API_KEY, "ru-RU", "1", "18,16", "7", "2015", "2010")
+    fun load(filmParams: FilmParams) {
+        val genres = filmParams.genresString()
+        val rate = filmParams.rate.toFloat()
+        val gteYear = filmParams.startYear+"-01-01"
+        val lteYear = filmParams.endYear+"-01-01"
+        disposable = repository.getFilms(API_KEY, "ru-RU", "1", genres, rate, gteYear, lteYear)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe { data ->
