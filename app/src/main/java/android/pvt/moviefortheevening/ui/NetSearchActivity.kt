@@ -7,11 +7,11 @@ import android.pvt.moviefortheevening.entity.FilmParams
 import android.pvt.moviefortheevening.entity.Genre
 import android.util.Log
 import android.widget.SeekBar
+import android.widget.Toast
 import androidx.fragment.app.FragmentActivity
 import kotlinx.android.synthetic.main.activity_search_net.*
 
 class NetSearchActivity : FragmentActivity(), SeekBar.OnSeekBarChangeListener {
-
 
     private val genreArray: ArrayList<String> = arrayListOf()
     val genres = Genre()
@@ -28,33 +28,37 @@ class NetSearchActivity : FragmentActivity(), SeekBar.OnSeekBarChangeListener {
         textEndYearSeekBar.text = filmParams.endYear
         Log.e("QQQ", filmParams.toString())
         randomButton.setOnClickListener {
-            getCheckBoxData()
-            getSeekBarData()
+            if (fullRandom.isChecked) {
+                fullRandom()
+            } else {
+                getCheckBoxData()
+                getSeekBarData()
+            }
             Log.e("QQQ", filmParams.genres.toString())
-
             val intent = Intent(this, FilmDetailsActivity::class.java)
             intent.putExtra("PARAMS", filmParams)
             startActivity(intent)
         }
+        listButton.setOnClickListener {
+            Toast.makeText(this, "Функционал локального списка в разработке", Toast.LENGTH_SHORT).show()
+        }
         Log.e("QQQ", filmParams.toString())
-
     }
 
     override fun onProgressChanged(seekbar: SeekBar?, p1: Int, p2: Boolean) {
         updateSeekBarText()
     }
-    override fun onStartTrackingTouch(seekbar: SeekBar?) {
 
+    override fun onStartTrackingTouch(seekbar: SeekBar?) {
     }
 
     override fun onStopTrackingTouch(seekBar: SeekBar?) {
-        if(startYearSeekBar.progress>=endYearSeekBar.progress){
+        if (startYearSeekBar.progress >= endYearSeekBar.progress) {
             endYearSeekBar.progress = startYearSeekBar.progress
         }
     }
 
-    fun getCheckBoxData(){
-        var unchecked = true
+    fun getCheckBoxData() {
         if (comedyCheckbox.isChecked) {
             genreArray.add(genres.genres["Comedy"].toString())
         }
@@ -73,21 +77,33 @@ class NetSearchActivity : FragmentActivity(), SeekBar.OnSeekBarChangeListener {
         if (animationCheckbox.isChecked) {
             genreArray.add(genres.genres["Animation"].toString())
         }
-        if (!comedyCheckbox.isChecked&&!actionCheckbox.isChecked&&!dramaCheckbox.isChecked&&!fantasyCheckbox.isChecked&&!horrorCheckbox.isChecked&&!animationCheckbox.isChecked){
+        if (!comedyCheckbox.isChecked && !actionCheckbox.isChecked && !dramaCheckbox.isChecked && !fantasyCheckbox.isChecked && !horrorCheckbox.isChecked && !animationCheckbox.isChecked) {
             genreArray.add("")
         }
         filmParams.genres = genreArray
     }
-    fun updateSeekBarText(){
+
+    fun updateSeekBarText() {
         textRateSeekBar.text = rateSeekBar.progress.toString()
         textStartYearSeekBar.text = startYearSeekBar.progress.toString()
         textEndYearSeekBar.text = endYearSeekBar.progress.toString()
     }
-    fun getSeekBarData(){
+
+    fun getSeekBarData() {
         filmParams.rate = rateSeekBar.progress.toString()
         filmParams.startYear = startYearSeekBar.progress.toString()
         filmParams.endYear = endYearSeekBar.progress.toString()
     }
+
+    fun fullRandom() {
+        filmParams.rate = (0..9).random().toString()
+        filmParams.genres.add("")
+        val startYear = (1910..2019).random()
+        var endYear = (1910..2019).random()
+        if (startYear > endYear) {
+            endYear = startYear
+        }
+        filmParams.startYear = startYear.toString()
+        filmParams.endYear = endYear.toString()
+    }
 }
-
-

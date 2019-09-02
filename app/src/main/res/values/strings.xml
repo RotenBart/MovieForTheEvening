@@ -1,3 +1,23 @@
 <resources>
     <string name="app_name">Movie For The Evening</string>
+    <string name="myself">Я приму решение сам!</string>
+    <string name="random">Я доверяю рандому!</string>
+    <string name="fullRandom">Будь что будет!(абсолютно случайный фильм)</string>
+    <string name="endYear">До:</string>
+    <string name="startYear">От:</string>
+    <string name="year">Год выпуска</string>
+    <string name="comedy">Комедия</string>
+    <string name="action">Боевик</string>
+    <string name="drama">Мелодрама</string>
+    <string name="fantasy">Фантастика</string>
+    <string name="horror">Ужасы</string>
+    <string name="animation">Анимация</string>
+    <string name="minRate">Минимальный рейтинг:</string>
+    <string name="searchNetTitle">Какой фильм хотите посмотреть?</string>
+    <string name="genres">Жанры:</string>
+    <string name="filmDate">Дата выхода фильма:</string>
+    <string name="filmRate">Рейтинг фильма:</string>
+    <string name="filmDecs">Описание фильма:</string>
+    <string name="searchNet">Выбрать в сети</string>
+    <string name="searchList">Выбрать из списка</string>
 </resources>

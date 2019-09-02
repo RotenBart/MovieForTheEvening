@@ -30,8 +30,8 @@
 
             <TextView
                 style="@style/titleText"
-                android:text="Дата выхода фильма:" />
-
+                android:text="@string/filmDate"
+                android:textColor="@color/colorGreen"/>
             <TextView
                 android:id="@+id/filmYear"
                 style="@style/titleText" />
@@ -44,7 +44,8 @@
 
             <TextView
                 style="@style/titleText"
-                android:text="Рейтинг фильма:" />
+                android:textColor="@color/colorGreen"
+                android:text="@string/filmRate" />
 
             <TextView
                 android:id="@+id/filmRate"
@@ -53,7 +54,8 @@
 
         <TextView
             style="@style/titleText"
-            android:text="Описание фильма:" />
+            android:textColor="@color/colorGreen"
+            android:text="@string/filmDecs" />
 
         <TextView
             android:id="@+id/filmDesc"

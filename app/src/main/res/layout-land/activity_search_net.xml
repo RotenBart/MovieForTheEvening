@@ -66,34 +66,62 @@
                 style="@style/checkBoxText"
                 android:text="@string/animation" />
         </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingTop="10dp"
+            android:paddingBottom="5dp">
+
+            <TextView
+                style="@style/searchActText"
+                android:text="@string/minRate" />
+
+            <TextView
+                android:id="@+id/textRateSeekBar"
+                style="@style/searchActText"
+                android:layout_gravity="center" />
+
+            <SeekBar
+                android:id="@+id/rateSeekBar"
+                style="@style/SeekBarColor"
+                android:max="9"
+                android:progress="7" />
+        </LinearLayout>
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:paddingTop="10dp"
-        android:paddingBottom="5dp">
+        android:orientation="horizontal">
 
-        <TextView
-            style="@style/searchActText"
-            android:text="@string/minRate" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
 
-        <TextView
-            android:id="@+id/textRateSeekBar"
-            style="@style/searchActText"
-            android:layout_gravity="center" />
+            <TextView
+                style="@style/searchActText"
+                android:text="@string/year" />
+
+            <TextView
+                style="@style/searchActText"
+                android:text="@string/startYear" />
+
+            <TextView
+                android:id="@+id/textStartYearSeekBar"
+                style="@style/searchActText" />
+
+            <SeekBar
+                android:id="@+id/startYearSeekBar"
+                style="@style/SeekBarColor"
+                android:max="2019"
+                android:min="1910"
+                android:progress="1999" />
+        </LinearLayout>
     </LinearLayout>
 
-    <SeekBar
-        android:id="@+id/rateSeekBar"
-        style="@style/SeekBarColor"
-        android:max="9"
-        android:progress="7" />
-
-    <TextView
-        style="@style/searchActText"
-        android:text="@string/year" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -102,24 +130,7 @@
 
         <TextView
             style="@style/searchActText"
-            android:text="@string/startYear" />
-
-        <TextView
-            android:id="@+id/textStartYearSeekBar"
-            style="@style/searchActText" />
-    </LinearLayout>
-
-    <SeekBar
-        android:id="@+id/startYearSeekBar"
-        style="@style/SeekBarColor"
-        android:max="2019"
-        android:min="1910"
-        android:progress="1999" />
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
+            android:text="@string/year" />
 
         <TextView
             style="@style/searchActText"
@@ -128,16 +139,16 @@
         <TextView
             android:id="@+id/textEndYearSeekBar"
             style="@style/searchActText" />
-    </LinearLayout>
 
-    <SeekBar
-        android:id="@+id/endYearSeekBar"
-        style="@style/SeekBarColor"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:max="2019"
-        android:min="1910"
-        android:progress="2019" />
+        <SeekBar
+            android:id="@+id/endYearSeekBar"
+            style="@style/SeekBarColor"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:max="2019"
+            android:min="1910"
+            android:progress="2019" />
+    </LinearLayout>
 
     <CheckBox
         android:id="@+id/fullRandom"

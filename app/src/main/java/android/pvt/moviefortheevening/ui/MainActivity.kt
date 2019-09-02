@@ -1,17 +1,13 @@
 package android.pvt.moviefortheevening.ui
 
-
 import android.content.Intent
 import android.os.Bundle
 import android.pvt.moviefortheevening.R
-import android.pvt.moviefortheevening.mvvm.ViewModelFilms
+import android.widget.Toast
 import androidx.fragment.app.FragmentActivity
-
-
 import kotlinx.android.synthetic.main.activity_main.*
 
-class MainActivity : FragmentActivity(){
-    private lateinit var viewModel:ViewModelFilms
+class MainActivity : FragmentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -21,6 +17,8 @@ class MainActivity : FragmentActivity(){
             val intent = Intent(this, NetSearchActivity::class.java)
             startActivity(intent)
         }
+        buttonLocal.setOnClickListener {
+            Toast.makeText(this, "Функционал локального списка в разработке", Toast.LENGTH_SHORT).show()
+        }
     }
-
 }

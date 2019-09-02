@@ -7,6 +7,22 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
     </style>
+    <style name="searchActText">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:paddingStart">20dp</item>
+        <item name="android:paddingEnd">20dp</item>
+        <item name="android:paddingBottom">10dp</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">#FFF</item>
+    </style>
+    <style name="checkBoxText">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">#FFF</item>
+        <item name="android:buttonTint">@color/colorGreen</item>
+    </style>
     <style name="titleText">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
@@ -22,7 +38,24 @@
         <item name="android:paddingEnd">10dp</item>
         <item name="android:textSize">16sp</item>
         <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/colorGreen</item>
+    </style>
+    <style name="SeekBarColor"
+        parent="Widget.AppCompat.SeekBar">
+        <item name="android:progressBackgroundTint">@color/colorGreen</item>
+        <item name="android:progressTint">@color/colorGreen</item>
+        <item name="android:thumbTint">@color/colorGreen</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+    <style name="searchNetButton">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
         <item name="android:textColor">#FFF</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:paddingStart">3dp</item>
+        <item name="android:paddingEnd">3dp</item>
+        <item name="android:layout_gravity">center</item>
     </style>
 
 </resources>

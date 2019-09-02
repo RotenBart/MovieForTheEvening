@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
@@ -14,7 +14,10 @@
         android:id="@+id/buttonNet"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:text="Выбрать в сети"
+        android:text="@string/searchNet"
+        android:layout_alignParentEnd="true"
+        android:layout_centerVertical="true"
+        android:layout_marginEnd="20dp"
         android:background="@color/colorRed"
         android:textColor="@android:color/white"
         android:layout_marginBottom="30dp"/>
@@ -22,8 +25,10 @@
         android:id="@+id/buttonLocal"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:text="Выбрать из списка"
+        android:layout_centerVertical="true"
+        android:layout_marginStart="20dp"
+        android:text="@string/searchList"
         android:background="@color/colorBlue"
         android:textColor="@android:color/white"/>
 
-</LinearLayout>
+</RelativeLayout>
