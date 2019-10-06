@@ -14,8 +14,7 @@ object NetProvider {
     private var api: Api? = null
 
     fun provideGson(): Gson {
-        val gson = GsonBuilder().create()
-        return gson
+        return GsonBuilder().create()
     }
 
     fun provideOkHttp(): OkHttpClient {
@@ -29,19 +28,16 @@ object NetProvider {
             okHttpBuilder.addInterceptor(logging)
         }
 
-        val okHttpClient = okHttpBuilder.build()
-
-        return okHttpClient
+        return okHttpBuilder.build()
     }
 
     fun provideRetrofit(baseUrl: String, okHttpClient: OkHttpClient, gson: Gson): Retrofit {
-        val retrofit = Retrofit.Builder()
+
+        return Retrofit.Builder()
             .baseUrl(baseUrl)
             .client(okHttpClient)
             .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
             .addConverterFactory(GsonConverterFactory.create(gson)).build()
-
-        return retrofit
     }
 
     fun provideApi(retrofit: Retrofit): Api {
