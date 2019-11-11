@@ -7,7 +7,6 @@ import android.pvt.moviefortheevening.entity.FilmParams
 import android.pvt.moviefortheevening.entity.Genre
 import android.util.Log
 import android.widget.SeekBar
-import android.widget.Toast
 import androidx.fragment.app.FragmentActivity
 import kotlinx.android.synthetic.main.activity_search_net.*
 
@@ -26,7 +25,6 @@ class NetSearchActivity : FragmentActivity(), SeekBar.OnSeekBarChangeListener {
         textRateSeekBar.text = filmParams.rate
         textStartYearSeekBar.text = filmParams.startYear
         textEndYearSeekBar.text = filmParams.endYear
-        Log.e("QQQ", filmParams.toString())
         randomButton.setOnClickListener {
             if (fullRandom.isChecked) {
                 fullRandom()
@@ -40,7 +38,11 @@ class NetSearchActivity : FragmentActivity(), SeekBar.OnSeekBarChangeListener {
             startActivity(intent)
         }
         listButton.setOnClickListener {
-            Toast.makeText(this, "Функционал локального списка в разработке", Toast.LENGTH_SHORT).show()
+            getCheckBoxData()
+            getSeekBarData()
+            val intent = Intent(this, NetListActivity::class.java)
+            intent.putExtra("PARAMS", filmParams)
+            startActivity(intent)
         }
         Log.e("QQQ", filmParams.toString())
     }

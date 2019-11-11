@@ -1,34 +1,56 @@
 package android.pvt.moviefortheevening.ui
 
-import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.pvt.moviefortheevening.R
 import android.pvt.moviefortheevening.entity.Film
+import android.pvt.moviefortheevening.entity.FilmParams
 import android.pvt.moviefortheevening.holder.NetListAdapter
+import android.pvt.moviefortheevening.mvvm.MVVMState
+import android.pvt.moviefortheevening.mvvm.ViewModelFilms
+import android.util.Log
+import androidx.fragment.app.FragmentActivity
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
-class NetListActivity : Activity(), NetListAdapter.OnClickListener {
+class NetListActivity : FragmentActivity(), NetListAdapter.OnClickListener {
 
-    private lateinit var adapter: NetListAdapter
-    private lateinit var filmList: MutableList<Film>
+    private lateinit var filmParams: FilmParams
+    private lateinit var recyclerView: RecyclerView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_list_net)
 
-        val recyclerView = findViewById<RecyclerView>(R.id.recyclerView)
-        recyclerView.setHasFixedSize(true)
-        recyclerView.layoutManager = LinearLayoutManager(this)
-        recyclerView.isNestedScrollingEnabled = false
-        adapter = NetListAdapter(filmList, this)
-        recyclerView.adapter = adapter
+        val adapter = NetListAdapter(this)
+        filmParams = intent.getSerializableExtra("PARAMS") as FilmParams
+        Log.e("PPP", filmParams.genres.toString())
+        val viewModel = ViewModelProviders.of(this).get(ViewModelFilms::class.java)
+        viewModel.load(filmParams)
+        viewModel.state.observe(this, Observer {
+            when (it) {
+                is MVVMState.Data -> {
+                    adapter.setFilmList(it.films.results)
+                    Log.e("PPP", it.films.results[0].title)
+                }
+            }
+        })
+        initRecycler(adapter)
     }
 
     override fun onItemClick(item: Film) {
         val intent = Intent(this, FilmDetailsActivity::class.java)
-        intent.putExtra("title", item.title)
+        intent.putExtra("PARAMS", filmParams)
         startActivity(intent)
+    }
+
+    fun initRecycler(adapter: NetListAdapter) {
+        recyclerView = findViewById(R.id.recyclerView)
+        recyclerView.adapter = adapter
+        recyclerView.setHasFixedSize(true)
+        recyclerView.layoutManager = LinearLayoutManager(this)
+        recyclerView.isNestedScrollingEnabled = false
     }
 }

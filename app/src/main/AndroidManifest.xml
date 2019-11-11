@@ -20,5 +20,6 @@
         </activity>
         <activity android:name=".ui.NetSearchActivity" />
         <activity android:name=".ui.FilmDetailsActivity" />
+        <activity android:name=".ui.NetListActivity" />
     </application>
 </manifest>

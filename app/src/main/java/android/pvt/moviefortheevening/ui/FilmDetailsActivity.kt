@@ -2,18 +2,18 @@ package android.pvt.moviefortheevening.ui
 
 import android.content.Intent
 import android.os.Bundle
+import android.pvt.moviefortheevening.IMG_URL
 import android.pvt.moviefortheevening.R
 import android.pvt.moviefortheevening.entity.FilmParams
 import android.pvt.moviefortheevening.entity.Films
 import android.pvt.moviefortheevening.mvvm.MVVMState
 import android.pvt.moviefortheevening.mvvm.ViewModelFilms
-import android.pvt.moviefortheevening.utils.loadImage
 import android.util.Log
-import android.widget.ImageView
 import android.widget.Toast
 import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import coil.api.load
 import kotlinx.android.synthetic.main.activity_details_film.*
 
 class FilmDetailsActivity : FragmentActivity() {
@@ -23,6 +23,7 @@ class FilmDetailsActivity : FragmentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_details_film)
+
         val filmParams = intent.getSerializableExtra("PARAMS") as? FilmParams
         Log.e("PPP", filmParams?.genres.toString())
         viewModel = ViewModelProviders.of(this).get(ViewModelFilms::class.java)
@@ -54,11 +55,7 @@ class FilmDetailsActivity : FragmentActivity() {
         filmDesc.text = films.results[i].desc
         filmRate.text = films.results[i].rate.toString()
 
-        val filmImage = findViewById<ImageView>(R.id.filmImage)
-        loadImage(this, imageUrl(films.results[i].image), filmImage)
-    }
-
-    fun imageUrl(path: String): String {
-        return "https://image.tmdb.org/t/p/w342$path"
+        val filmImage = filmImage
+        filmImage.load(IMG_URL.plus(films.results[i].image))
     }
 }
