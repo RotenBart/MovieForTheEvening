@@ -1,7 +1,10 @@
 package android.pvt.moviefortheevening.entity
 
+import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
+import kotlinx.android.parcel.Parcelize
 
+@Parcelize
 data class Film(
     @SerializedName("title")
     val title: String,
@@ -13,4 +16,4 @@ data class Film(
     val desc: String,
     @SerializedName("poster_path")
     val image: String
-)
+) : Parcelable

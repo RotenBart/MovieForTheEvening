@@ -9,9 +9,11 @@ import android.pvt.moviefortheevening.holder.NetListAdapter
 import android.pvt.moviefortheevening.mvvm.MVVMState
 import android.pvt.moviefortheevening.mvvm.ViewModelFilms
 import android.util.Log
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
@@ -42,15 +44,18 @@ class NetListActivity : FragmentActivity(), NetListAdapter.OnClickListener {
 
     override fun onItemClick(item: Film) {
         val intent = Intent(this, FilmDetailsActivity::class.java)
-        intent.putExtra("PARAMS", filmParams)
+        intent.putExtra("FILM", item)
         startActivity(intent)
     }
 
-    fun initRecycler(adapter: NetListAdapter) {
+    private fun initRecycler(adapter: NetListAdapter) {
+        val decoration = DividerItemDecoration(this, DividerItemDecoration.HORIZONTAL)
+        decoration.setDrawable(ContextCompat.getDrawable(this, R.color.colorGreen)!!)
         recyclerView = findViewById(R.id.recyclerView)
         recyclerView.adapter = adapter
         recyclerView.setHasFixedSize(true)
         recyclerView.layoutManager = LinearLayoutManager(this)
+        recyclerView.addItemDecoration(decoration)
         recyclerView.isNestedScrollingEnabled = false
     }
 }
